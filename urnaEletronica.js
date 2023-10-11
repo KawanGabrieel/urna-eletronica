@@ -111,7 +111,8 @@ function urnaEletronica() {
             console.log('Voto Nulo computado')
             votonulo++;
     
-        }
+        } else 
+            return
 
     } while (voto !== 0);
     
