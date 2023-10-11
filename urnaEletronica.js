@@ -64,6 +64,10 @@ function urnaEletronica() {
     let nome2;
     let nome3;
 
+    nome1 = parseInt(prompt('Digite o nome do Candidato 1'));
+    nome2 = parseInt(prompt('Digite o nome do Candidato 2'));
+    nome3 = parseInt(prompt('Digite o nome do Candidato 3'));
+
     let contador = 0;
     let candidato1 = 0;
     let candidato2 = 0;
