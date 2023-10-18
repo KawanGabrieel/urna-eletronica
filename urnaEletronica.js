@@ -57,78 +57,87 @@
 //     console.log('Instrução');
 //     contador += 1;
 // } while (contador <= 10)
-function urnaEletronica() {
 
-    let opcao;
-    let nome1;
-    let nome2;
-    let nome3;
+function urnaEletronica(){
+    let 
+    candidato1 = "",
+    candidato2 = "",
+    candidato3 = "",
+    fim = "",
+    ganhador = "";
 
-    nome1 = parseInt(prompt('Digite o nome do Candidato 1'));
-    nome2 = parseInt(prompt('Digite o nome do Candidato 2'));
-    nome3 = parseInt(prompt('Digite o nome do Candidato 3'));
+    let 
+    votoC1 = 0,
+    votoC2 = 0,
+    votoC3 = 0,
+    votoBranco = 0,
+    votoGanhador = 0,
+    porcentagem = 0,
+    porcentagemC1 = 0,
+    porcentagemC2 = 0,
+    porcentagemC3 = 0,
+    porcentagemBranco = 0,
+    porcentagemNulo = 0,
+    votoNulo = 0;
 
-    let contador = 0;
-    let candidato1 = 0;
-    let candidato2 = 0;
-    let candidato3 = 0;
-    let votobranco = 0;
-    let votonulo = 0;
-    
+    let condicao = true
+
+    candidato1 = prompt("Digite o nome do Primeiro candidato: ");
+    candidato2 = prompt("Digite o nome do Segundo candidato: ");
+    candidato3 = prompt("Digite o nome do Terceiro candidato: ");
 
     do {
-        
-        voto = parseInt(prompt(
-            '\n 1 Candidato 1' +
-            '\n 2 Candidato 2' +
-            '\n 3 Candidato 3' +
-            '\n 5 Voto em Branco' +
-            '\n 8 Voto Nulo '+
-            '\n 0 Encerrar votação' +
-            '\n Digite a sua escolha:'));
+        operacao = parseInt(prompt(`Digite o número correspondente ao seu voto:\n\n[1] ${candidato1}\n[2] ${candidato2}\n[3] ${candidato3}\n[5] Branco\n[8] Nulo`));
+        if(operacao === 1){
+            votoC1 += 1;
+            alert(`Candidato ${candidato1} votado com sucesso!`)
+        } else if(operacao === 2){
+            votoC2 += 1;
+            alert(`Candidato ${candidato2} votado com sucesso!`)
+        } else if(operacao === 3){
+            votoC3 += 1;
+            alert(`Candidato ${candidato3} votado com sucesso!`)
+        } else if(operacao === 5){
+            votoBranco += 1;
+            alert('Voto em branco registrado com sucesso!')
+        } else if(operacao === 8){
+            votoNulo += 1;
+            alert('Voto nulo registrado com sucesso!')
+        } else if(operacao === 150714) {
+            fim = prompt("Você tem certeza que deseja encerrar a operação? [S/N]")
+                if (fim === "S" || fim === "s") {
+                    alert("Encerrando a operação!");
+                    condicao = false;
+                }
+        } else {
+            alert("Operação inválida");
+        }
+    } while(condicao);
 
-        contador++;
-       
-        
-        if (voto === 1){
-    
-            console.log('Voto computado para:', nome1)
-            candidato1++;
-            
-        }else if (voto === 2){
-    
-            console.log('Voto computado para:', nome2)
-            candidato2++;
-    
-        }else if (voto === 3){
-    
-            console.log('Voto computado para:', nome3)
-            candidato3++;
-    
-        }else if (voto === 5){
-    
-            console.log('Voto em Branco computado')
-            votobranco++;
-    
-        }else if (voto === 8){
-    
-            console.log('Voto Nulo computado')
-            votonulo++;
-    
-        } else 
-            return
+    if(votoC1 > votoC2 && votoC1 > votoC3){
+        ganhador = candidato1;
+        votoGanhador = votoC1 + votoBranco;
+    } else if(votoC2 > votoC1 && votoC2 > votoC3){
+        ganhador = candidato2;
+        votoGanhador = votoC2 + votoBranco;
+    } else if(votoC3 > votoC1 && votoC3 > votoC2){
+        ganhador = candidato3;
+        votoGanhador = votoC3 + votoBranco;
+    } else {
+        alert(`Empate! Sem ganhadores.\nA quantidade de votos brancos e nulos foram de: ${porcentagemBranco.toFixed(2)}% e ${votoBranco} votos brancos no total e ${porcentagemNulo.toFixed(2)}% e ${votoNulo} votos nulos no total.`);
+    }
 
-    } while (voto !== 0);
+    porcentagemC1 = (votoC1 / (votoC1 + votoC2 + votoC3 + votoNulo + votoBranco)) * 100;
+    porcentagemC2 = (votoC2 / (votoC1 + votoC2 + votoC3 + votoNulo + votoBranco)) * 100;
+    porcentagemC3 = (votoC3 / (votoC1 + votoC2 + votoC3 + votoNulo + votoBranco)) * 100;
+    porcentagem = (votoGanhador / (votoC1 + votoC2 + votoC3 + votoNulo + votoBranco)) * 100;
+    porcentagemBranco = (votoBranco / (votoC1 + votoC2 + votoC3 + votoNulo + votoBranco)) * 100;
+    porcentagemNulo = (votoNulo / (votoC1 + votoC2 + votoC3 + votoNulo + votoBranco)) * 100;
+
+    if(ganhador !== ""){
+        alert(`O total de voto de todos os candidatos e seus percentuais foram:\n${candidato1}, ${votoC1} e ${porcentagemC1.toFixed(2)}%\n${candidato2}, ${votoC2} e ${porcentagemC2.toFixed(2)}%\n${candidato3}, ${votoC3} e ${porcentagemC3.toFixed(2)}%`);
+        alert(`A quantidade de votos brancos e nulos foram de:\n${porcentagemBranco.toFixed(2)}% e ${votoBranco} de votos brancos no total\n${porcentagemNulo.toFixed(2)}% e ${votoNulo} de votos nulos no total.`)
+        alert(`O ganhador foi ${ganhador} com ${porcentagem.toFixed(2)}% dos votos e ${votoGanhador} votos no total após acréscimo de votos brancos.`);
+    }
     
-    contador--;
-    
-
-    console.log('Contagem', contador );
-    console.log('Voto computado para Candidato1 ', candidato1);
-    console.log('Voto computado para Candidato2 ', candidato2);
-    console.log('Voto computado para Candidato3 ', candidato3);
-    console.log('Voto em Branco computado', votobranco);
-    console.log('Voto Nulo computado', votonulo);
-
-
 }
